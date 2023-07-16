@@ -1,0 +1,17 @@
+# Dev Env
+**/.DS_Store
+
+# Python
+**/__pycache__
+
+# IDE
+.idea
+
+# Specific Directories
+poc/
+
+# Environments
+**/.env
+
+# Configurations
+**/config.json

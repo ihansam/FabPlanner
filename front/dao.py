@@ -23,7 +23,7 @@ def get_all_schedules():
 
 @st.cache_data
 def get_all_lots():
-    path = Path(ROOT).joinpath("front/tmp_db/lot.csv")
+    path = Path(ROOT).joinpath("front/tmp_db/fabrication.csv")
     return pd.read_csv(path)
 
 
@@ -35,5 +35,5 @@ def get_all_schedules():
 
 @st.cache_data
 def get_all_lot_steps():
-    path = Path(ROOT).joinpath("front/tmp_db/lot_step.csv")
+    path = Path(ROOT).joinpath("front/tmp_db/fab_step.csv")
     return pd.read_csv(path)

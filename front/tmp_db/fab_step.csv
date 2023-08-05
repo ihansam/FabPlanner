@@ -1,0 +1,11 @@
+project,fabname,stepname,eta
+M2MacBookAir15,MBATA,frame,2020-06-30
+M2MacBookAir15,MBATA,assemble,2020-07-30
+M2MacBookAir15,MBATB,frame,2020-08-31
+M2MacBookAir15,MBATB,assemble,2020-09-30
+M2MacBookAir15,MBASG,frame,2021-09-30
+M2MacBookAir15,MBASG,assemble,2021-10-30
+M2MacBookAir15,MBASK,frame,2022-08-30
+M2MacBookAir15,MBASK,assemble,2022-09-30
+M3MacBookPro13,MBPSS,frame,2023-05-30
+M3MacBookPro13,MBPSS,assemble,2023-06-30

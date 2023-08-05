@@ -2,6 +2,12 @@
 - Easily view your product development roadmap
 
 
+### How to Demonstrate
+- Run streamlit server
+```commandline
+streamlit run front/0_🏠home.py
+```
+
 ### ERD Diagram
 - 프로젝트는 여러 개의 일정을 갖고 진행됨
 - 일정의 종류: Engineering Sample, Customer Sample, Mass Production

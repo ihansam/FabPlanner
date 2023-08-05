@@ -3,11 +3,11 @@ import plotly.colors as pc
 import plotly.graph_objects as go
 import streamlit as st
 
-from front.dao import get_all_lot_steps, get_all_schedules
+from front.dao import get_all_fab_step, get_all_schedule
 
 # milestone DataFrame 생성
-_schedules = get_all_schedules()
-_steps = get_all_lot_steps()
+_schedules = get_all_schedule()
+_steps = get_all_fab_step()
 
 _filter = st.selectbox("Select projects: ", _steps['project'].unique())
 schedules = _schedules[_schedules['project'] == _filter]

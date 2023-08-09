@@ -1,24 +1,31 @@
 package com.example.api.domain;
 
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 public class Project {
+    @Id
+    @Column(name = "pjId")
     private int pjId;
     private String codeName;
 
-    public Project(int pjId, String codeName) {
-        this.pjId = pjId;
-        this.codeName = codeName;
-    }
+    @OneToMany(mappedBy = "project")
+    private List<Schedule> schedules = new ArrayList<>();
 
+    // Getter & Setter
     public int getPjId() {
         return pjId;
     }
 
-    public String getCodeName() {
-        return codeName;
-    }
-
     public void setPjId(int pjId) {
         this.pjId = pjId;
+    }
+
+    public String getCodeName() {
+        return codeName;
     }
 
     public void setCodeName(String codeName) {

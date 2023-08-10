@@ -17,12 +17,12 @@ streamlit run front/0_🏠home.py
 ```mermaid
 erDiagram
     PROJECT{
-        int pdId PK
+        int pjId PK
         str codeName
     }
     SCHEDULE{
         int sdId PK
-        int pdId FK
+        int pjId FK
         str type "ES, CS, MP"
         date kickOff "in design"
         date fabIn "in fabrication"

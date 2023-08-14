@@ -3,7 +3,7 @@ import plotly.colors as pc
 import plotly.graph_objects as go
 import streamlit as st
 
-from front.dao import get_all_fab_step, get_all_schedule
+from front.api_call import get_all_fab_step, get_all_schedule
 
 
 # Project 선택

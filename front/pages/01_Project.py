@@ -1,6 +1,6 @@
 import streamlit as st
 
-from front.dao import get_all_project
+from front.api_call import get_all_project
 
 print("run project page")
 st.markdown("# Projects  ")

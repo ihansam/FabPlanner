@@ -1,6 +1,6 @@
 import streamlit as st
 
-from front.dao import get_all_fab
+from front.api_call import get_all_fab
 
 print("run fab page")
 st.markdown("# Project Fabrications  ")

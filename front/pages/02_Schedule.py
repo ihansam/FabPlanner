@@ -1,6 +1,6 @@
 import streamlit as st
 
-from front.dao import get_all_schedule
+from front.api_call import get_all_schedule
 
 print("run schedule page")
 st.markdown("# Project Schedules  ")

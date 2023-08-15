@@ -7,8 +7,9 @@
 # IDE
 .idea
 
-# Specific Directories
+# Personal tests
 poc/
+*temp*
 
 # Environments
 **/.env

@@ -3,6 +3,7 @@ import streamlit as st
 from streamlit import session_state as ss
 
 from front.api_call import get_all_schedule, get_all_project
+from front.roadmap import gather_milestones, generate_roadmap
 
 SHOWING_NEW_SCHEDULE_FORM = "SHOWING_NEW_SCHEDULE_FORM"
 PROCESSING_SUBMITTED_SCHEDULE = "PROCESSING_SUBMITTED_SCHEDULE"
@@ -72,3 +73,9 @@ if __name__ == '__main__':
     if col_save.button("Save"):
         print("UPDATE /schedule")  # TODO
         st.write("saved!")
+
+    with st.expander("Roadmap", expanded=True):
+        for _prj in _filter:
+            _stones = gather_milestones(_prj, gather_schedule=True, gather_fab_step=False)
+            _fig = generate_roadmap(_stones, project_name=_prj)
+            st.plotly_chart(_fig, use_container_width=True)

@@ -4,13 +4,17 @@ from streamlit import session_state as ss
 
 from front.api_call import get_all_schedule, get_all_project
 
-STATE_SCHEDULE_SUBMITTED = "STATE_SCHEDULE_SUBMITTED"
+SHOWING_NEW_SCHEDULE_FORM = "SHOWING_NEW_SCHEDULE_FORM"
+PROCESSING_SUBMITTED_SCHEDULE = "PROCESSING_SUBMITTED_SCHEDULE"
 SUBMITTED_SCHEDULE_DATA = "SUBMITTED_SCHEDULE_DATA"
 _projects = get_all_project()['codeName']
 
 
-def set_submitting_state(state: bool):
-    ss[STATE_SCHEDULE_SUBMITTED] = state
+def set_submit_state(show: bool = None, submit: bool = None):
+    if show is not None:
+        ss[SHOWING_NEW_SCHEDULE_FORM] = show
+    if submit is not None:
+        ss[PROCESSING_SUBMITTED_SCHEDULE] = submit
 
 
 def show_add_form():
@@ -30,7 +34,7 @@ def show_add_form():
         _new = pd.DataFrame(columns=list(_config.keys()))
         st.data_editor(_new, column_config=_config, num_rows='dynamic',
                        key=SUBMITTED_SCHEDULE_DATA, use_container_width=True)
-        st.form_submit_button(on_click=set_submitting_state, args=(True, ))
+        st.form_submit_button(on_click=set_submit_state, kwargs={'show': False, 'submit': True})
 
 
 def submit_new_schedule():
@@ -38,7 +42,7 @@ def submit_new_schedule():
     new_schedules = ss.get(SUBMITTED_SCHEDULE_DATA)
     st.write(new_schedules)
     print(new_schedules)
-    set_submitting_state(False)
+    set_submit_state(submit=False)
 
 
 if __name__ == '__main__':
@@ -56,10 +60,13 @@ if __name__ == '__main__':
 
     _, col_new, col_save = st.columns([8, 1, 1])
 
-    if col_new.button("New", on_click=set_submitting_state, args=(False, )):
+    if col_new.button("New"):
+        set_submit_state(show=True, submit=False)
+
+    if SHOWING_NEW_SCHEDULE_FORM in ss and ss.get(SHOWING_NEW_SCHEDULE_FORM):
         show_add_form()
 
-    if STATE_SCHEDULE_SUBMITTED in ss and ss.get(STATE_SCHEDULE_SUBMITTED):
+    if PROCESSING_SUBMITTED_SCHEDULE in ss and ss.get(PROCESSING_SUBMITTED_SCHEDULE):
         submit_new_schedule()
 
     if col_save.button("Save"):

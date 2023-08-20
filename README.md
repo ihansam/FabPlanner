@@ -3,6 +3,7 @@
 
 
 ### How to Demonstrate
+- Create `.env` file refer to `env.example`
 - Run streamlit server
 ```commandline
 streamlit run front/0_🏠home.py

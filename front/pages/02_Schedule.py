@@ -21,7 +21,7 @@ def show_add_form():
                                                         help="select a project",
                                                         required=True,
                                                         options=_projects),
-            'type': st.column_config가.TextColumn("Type", required=True),
+            'type': st.column_config.TextColumn("Type", required=True),
             'kickOff': st.column_config.DateColumn("Kick Off"),
             'fabIn': st.column_config.DateColumn("Fab In"),
             'fabOut': st.column_config.DateColumn("Fab Out"),
@@ -54,14 +54,14 @@ if __name__ == '__main__':
     st.data_editor(filtered, key="schedules", disabled=('project', '_index'), hide_index=True, use_container_width=True)
     # st.write(st.session_state.get("schedules"))  # 변경 사항 추적
 
-    btns = st.columns(2)
+    _, col_new, col_save = st.columns([8, 1, 1])
 
-    if btns[0].button("New", on_click=set_submitting_state, args=(False, )):
+    if col_new.button("New", on_click=set_submitting_state, args=(False, )):
         show_add_form()
 
     if STATE_SCHEDULE_SUBMITTED in ss and ss.get(STATE_SCHEDULE_SUBMITTED):
         submit_new_schedule()
 
-    if btns[1].button("Save"):
+    if col_save.button("Save"):
         print("UPDATE /schedule")  # TODO
         st.write("saved!")

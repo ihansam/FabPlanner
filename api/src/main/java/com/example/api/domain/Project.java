@@ -8,6 +8,7 @@ import java.util.List;
 @Entity
 public class Project {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pjId")
     private int pjId;
     private String codeName;

@@ -4,6 +4,7 @@ import com.example.api.domain.Project;
 import com.example.api.service.ProjectService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class ProjectController {
         try {
             Project launched = projectService.launch(project);
             return ResponseEntity.status(HttpStatus.CREATED).body(launched);
-        } catch (IllegalStateException e) {
+        } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Cannot add project that already exists codename");
         }
@@ -47,7 +48,7 @@ public class ProjectController {
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("Project not found.");
-        } catch (IllegalStateException e) {
+        } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Cannot update to the codename that already exists.");
         }

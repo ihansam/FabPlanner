@@ -3,6 +3,7 @@ package com.example.api.service;
 import com.example.api.domain.Project;
 import com.example.api.repository.ProjectRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class ProjectService {
     public void validateProjectNameExist(Project project) {
         projectRepo.findByCodeName(project.getCodeName())
                 .ifPresent(m->{
-                    throw new IllegalStateException("Cannot add codename that already exists");
+                    throw new DataIntegrityViolationException("Cannot add codename that already exists");
                 });
     }
 

@@ -22,6 +22,12 @@ public class ProjectService {
         return (List<Project>) projectRepo.findAll();
     }
 
+    // 한 프로젝트 조회
+    public Project findById(int projectId){
+        return projectRepo.findById(projectId)
+                .orElseThrow(EntityNotFoundException::new);
+    }
+
     // 중복 점검
     public void validateProjectNameExist(Project project) {
         projectRepo.findByCodeName(project.getCodeName())
